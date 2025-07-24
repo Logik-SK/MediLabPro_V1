@@ -5,7 +5,7 @@ import { doctorIpDirectoryConfig } from "../config/tablesConfig";
 import doctorIpDirectory from "../hooks/getTableData";
 
 const ReferralDoctorIPPage = () => {
-  const { title, subtitle, ...tableProps } = doctorIpDirectoryr(doctorIpDirectoryConfig);
+  const { title, subtitle, ...tableProps } = doctorIpDirectory(doctorIpDirectoryConfig,'');
 
   return (
     <ContentWrapper>
