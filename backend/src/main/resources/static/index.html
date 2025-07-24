@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-width-collapsed: 5rem;
+            --sidebar-width-expanded: 15rem;
+            --card-hover-scale: 1.05;
+        }
+
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            padding-top: 5.6rem;
+            /* Prevent content overlap with fixed navbar */
+            font-size: 1rem;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1020;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #fff !important;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width-collapsed);
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            top: 3.5rem; /* Position the sidebar just below the navbar */
+            /* Below the navbar */
+            left: 0;
+            transition: width 0.3s ease;
+            z-index: 1020;
+        }
+
+        .sidebar.expanded {
+            width: var(--sidebar-width-expanded);
+        }
+
+        .sidebar .nav-link {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar .nav-link i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .sidebar .menu-text {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar.expanded .menu-text {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar:hover .menu-text {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .content {
+            margin-left: var(--sidebar-width-collapsed);
+            transition: margin-left 0.3s ease;
+        }
+
+        .sidebar.expanded~.content {
+            margin-left: var(--sidebar-width-expanded);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 1rem;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+
+
+        .card:hover {
+            transform: scale(var(--card-hover-scale));
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar.expanded~footer {
+            margin-left: var(--sidebar-width-expanded);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            position: relative;
+            transition: margin-left 0.3s ease;
+            margin-left: var(--sidebar-width-collapsed);
+        }
+
+        .sidebar.expanded~footer {
+            margin-left: var(--sidebar-width-expanded);
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .badge {
+            font-size: 0.9rem;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 0.625rem;
+            /* 10px */
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 4rem;
+            }
+
+            .sidebar.expanded {
+                width: 12rem;
+            }
+
+            .content {
+                margin-left: 4rem;
+            }
+
+            .sidebar.expanded~.content {
+                margin-left: 12rem;
+            }
+
+            footer {
+                margin-left: 4rem;
+            }
+
+            .sidebar.expanded~footer {
+                margin-left: 12rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light me-3 btn-toggle-sidebar" type="button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#"><i class="fas fa-flask"></i> MediLabPro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">User Name</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-home"></i>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/patients">
+                    <i class="fas fa-user-injured"></i>
+                    <span class="menu-text">Patients</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-vials"></i>
+                    <span class="menu-text">Tests</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-file-medical-alt"></i>
+                    <span class="menu-text">Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-cogs"></i>
+                    <span class="menu-text">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Dashboard</h1>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <div class="icon"><i class="fas fa-user-injured"></i></div>
+                            <h5 class="card-title">Total Patients</h5>
+                            <p class="card-text">120</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <div class="icon"><i class="fas fa-vials"></i></div>
+                            <h5 class="card-title">Active Tests</h5>
+                            <p class="card-text">45</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <div class="icon"><i class="fas fa-file-medical-alt"></i></div>
+                            <h5 class="card-title">Completed Reports</h5>
+                            <p class="card-text">300</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <div class="icon"><i class="fas fa-user-md"></i></div>
+                            <h5 class="card-title">Available Doctors</h5>
+                            <p class="card-text">25</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <div class="icon"><i class="fas fa-clinic-medical"></i></div>
+                            <h5 class="card-title">Departments</h5>
+                            <p class="card-text">10</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <div class="icon"><i class="fas fa-calendar-check"></i></div>
+                            <h5 class="card-title">Appointments Today</h5>
+                            <p class="card-text">15</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Recent Reports and Tests</h2>
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Report/Test Name</th>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Blood Test</td>
+                            <td>John Doe</td>
+                            <td>2023-03-01</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>X-Ray</td>
+                            <td>Jane Smith</td>
+                            <td>2023-03-02</td>
+                            <td><span class="badge bg-warning">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>CT Scan</td>
+                            <td>Michael Brown</td>
+                            <td>2023-03-03</td>
+                            <td><span class="badge bg-danger">Delayed</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Urine Test</td>
+                            <td>Emily Davis</td>
+                            <td>2023-03-04</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 py-3">
+        <p>&copy; 2023 MediLabPro. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sidebar toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.querySelector('.sidebar'); // Select the sidebar
+            const toggleButton = document.querySelector('.btn-toggle-sidebar'); // Select the toggle button
+
+            if (sidebar && toggleButton) {
+                toggleButton.addEventListener('click', () => {
+                    sidebar.classList.toggle('expanded'); // Toggle the 'expanded' class
+                });
+            } else {
+                console.error('Sidebar or toggle button not found!');
+            }
+        });
+    </script>
+</body>
+
+</html>

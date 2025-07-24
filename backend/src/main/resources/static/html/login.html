@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MediLabPro</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="css/styles.css"> -->
+	<link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg">
+		<a class="navbar-brand" href="#"><i class="fas fa-flask"></i> MediLabPro</a>
+	</nav>
+
+	<div class="auth-container">
+		<div class="catchy-tagline">
+			<i class="fas fa-heartbeat"></i>
+			<span style="font-size:1.2em; font-weight:bold;">
+				Because every patient deserves answers.
+				MediLabPro makes diagnostics personal, powerful, and life-changing.<br>
+			</span>
+			 <span class="catchy-tagline-author">— MediLabPro Empowers Every Patient Journey!</span>
+		</div>
+		<div class="auth-box">
+			<!-- Login Form -->
+			<div id="login-container">
+				<div class="card p-4">
+					<div class="card-body text-center">
+						<h2 class="text-primary"><i class="fas fa-user-circle"></i> Login</h2>
+						<form id="login-form" method="POST" action="/authenticate">
+							<div class="form-group text-left">
+								<label for="login-email">UserName</label>
+								<input type="text" name="username" id="login-email" class="form-control"
+									placeholder="Enter UserName" required>
+							</div>
+							<div class="form-group text-left">
+								<label for="login-password">Password</label>
+								<input type="password" name="password" id="login-password" class="form-control"
+									placeholder="Enter password" required>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i>
+								Login</button>
+							<p class="text-center mt-3">Don't have an account? <a href="#" id="show-signup">Sign up</a>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- Signup Form -->
+			<div id="signup-container" class="hidden">
+				<div class="card p-4">
+					<div class="card-body text-center">
+						<h2 class="text-primary"><i class="fas fa-user-plus"></i> Sign Up</h2>
+						<form id="signup-form" method="POST" action="/signup">
+							<div class="form-group text-left">
+								<label for="signup-name">Full Name</label>
+								<input type="text" name="name" id="signup-name" class="form-control"
+									placeholder="Enter full name" required>
+							</div>
+							<div class="form-group text-left">
+								<label for="signup-email">Email</label>
+								<input type="email" name="email" id="signup-email" class="form-control"
+									placeholder="Enter email" required>
+							</div>
+							<div class="form-group text-left">
+								<label for="signup-password">Password</label>
+								<input type="password" name="password" id="signup-password" class="form-control"
+									placeholder="Enter password" required>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block"><i class="fas fa-user-plus"></i>
+								Sign Up</button>
+							<p class="text-center mt-3">Already have an account? <a href="#" id="show-login">Login</a>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		&copy; 2023 MediLabPro. All rights reserved.
+	</div>
+
+	<script src="js/login.js"></script>
+</body>
+
+</html>

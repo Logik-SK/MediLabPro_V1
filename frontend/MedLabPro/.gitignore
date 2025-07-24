@@ -1,0 +1,29 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build output
+node_modules/
+dist/          # Final build output
+dist-ssr/      # If you're using server-side rendering (e.g., Vite SSR)
+
+# Local environment
+*.local
+
+# Editor directories and files
+.vscode/                         # Ignore all .vscode settings
+!.vscode/extensions.json         # Except extensions.json (team shared config)
+.idea/
+.DS_Store
+.env
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+

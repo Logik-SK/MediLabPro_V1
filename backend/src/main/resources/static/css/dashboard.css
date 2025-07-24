@@ -1,0 +1,61 @@
+
+
+/* Dashboard Cards */
+.card {
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	transition: transform 0.2s;
+	background: rgba(255, 255, 255, 0.1);
+	/* Matching login form */
+	color: white;
+	text-align: center;
+}
+
+.card:hover {
+	transform: scale(1.05);
+}
+
+/* Card Icons */
+.card-body i {
+	font-size: 36px;
+	margin-bottom: 10px;
+}
+
+/* Card Numbers */
+.count {
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+
+
+.breadcrumb {
+	background: none;
+	font-size: 16px;
+	display: flex;
+}
+
+.breadcrumb-item a {
+	text-decoration: none;
+	color: #333;
+}
+
+.breadcrumb-item a:hover {
+	color: #007bff;
+}
+
+.breadcrumb-item.active {
+	font-weight: bold;
+	color: #009688;
+}
+
+.navbar,
+.card,
+.footer {
+	backdrop-filter: blur(10px);
+}
+
+
+
